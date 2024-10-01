@@ -9,11 +9,19 @@
     <title>Card Guessing Game</title>
 </head>
 <body>
+    <!-- Decorative Elements -->
+    <div class="🤚">
+        <div class="🌴"></div>
+        <div class="👍"></div>
+        <div class="👉"></div>
+        <div class="👉"></div>
+        <div class="👉"></div>
+        <div class="👉"></div>
+    </div>
     <h1>Card Guessing Game</h1>
     <button id="reset-button">Reset Game</button>
     <div id="timer">Time: 00:00:00</div>
 
-    
     <div id="container">
         <div id="game-board">
             <!-- Dynamically Generated Cards will go here -->
@@ -44,9 +52,6 @@
         </div>
     </div>
 
-    <!-- <button id="reset-button">Reset Game</button>
-    <div id="timer">Time: 00:00:00</div> -->
-
     <div id="popup" style="display:none;">
         <h2>Congratulations! You won!</h2>
         <form action="/scores" method="POST">
@@ -56,6 +61,8 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+
+    
 
     <script src="/js/game.js"></script>
 </body>
