@@ -2,23 +2,47 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
 }
+
+#container {
+    display: flex; /* Use flexbox to align children side by side */
+    justify-content: space-between; /* Space between the two containers */
+    margin: 20px; /* Margin around the container */
+}
+
 #game-board {
     display: grid;
-    grid-template-columns: repeat(6, 100px);
+    grid-template-columns: repeat(6, 80px); /* Reduced size for each card */
     grid-gap: 10px;
     justify-content: center;
     margin: 20px 0;
 }
+
+/* Updated card styles */
 .card {
-    width: 100px;
-    height: 100px;
+    width: 80px; /* Reduced width */
+    height: 80px; /* Reduced height */
     background-color: #333;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    font-family: 'Lobster', cursive; /* Apply the Lobster font */
+    font-size: 2.5em; /* Adjusted font size for visibility */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for better visibility */
+    transition: transform 0.3s; /* Smooth transition for flip effect */
 }
+
 .card.matched {
-    background-color: #28a745;
+    background-color: #28a745; /* Change color for matched cards */
 }
+
+#instructions {
+    max-width: 400px; /* Set a max width for the instructions */
+    margin-left: 20px; /* Add some space between the game and instructions */
+    text-align: left; /* Align text to the left for better readability */
+    margin-right: 20%;
+}
+
+/* Add Google Fonts link for Lobster */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');

@@ -21,7 +21,8 @@ function startGame() {
 }
 
 function createCards() {
-    const cardValues = Array.from({ length: 18 }, (_, i) => i + 1).flatMap(i => [i, i]);
+    // Generate an array of capital letters (A to R)
+    const cardValues = Array.from({ length: 18 }, (_, i) => String.fromCharCode(65 + i)).flatMap(letter => [letter, letter]);
     shuffle(cardValues);
     return cardValues.map(value => createCardElement(value));
 }
