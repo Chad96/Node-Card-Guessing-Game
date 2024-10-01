@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Card Guessing Game</title>
+</head>
+<body>
+    <h1>Card Guessing Game</h1>
+    <div id="game-board">
+        <!-- Dynamically Generated Cards will go here -->
+    </div>
+    <button id="reset-button">Reset Game</button>
+
+    <div id="timer">Time: 00:00:00</div>
+    <div id="popup" style="display:none;">
+        <h2>Congratulations! You won!</h2>
+        <form action="/scores" method="POST">
+            <label for="username">Enter your name: </label>
+            <input type="text" id="username" name="username" required>
+            <input type="hidden" id="time" name="time">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="/js/game.js"></script>
+</body>
+</html>

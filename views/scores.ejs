@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>High Scores</title>
+</head>
+<body>
+    <h1>High Scores</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% scores.forEach(score => { %>
+                <tr>
+                    <td><%= score.username %></td>
+                    <td><%= score.time %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <a href="/">Back to Game</a>
+</body>
+</html>
