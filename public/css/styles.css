@@ -12,13 +12,12 @@ body {
 #game-board {
     display: grid;
     grid-template-columns: repeat(6, 80px); /* Reduced size for each card */
-    /* grid-gap: 10px; */
     gap: 2px 10px;
     justify-content: center;
     margin: 20px 0;
 }
 
-/* Updated card styles */
+/* Updated card styles with background image */
 .card {
     width: 80px; /* Reduced width */
     height: 80px; /* Reduced height */
@@ -32,10 +31,17 @@ body {
     font-size: 2.5em; /* Adjusted font size for visibility */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for better visibility */
     transition: transform 0.3s; /* Smooth transition for flip effect */
+    
+    /* Background image properties */
+    background-image: url('/img/blue.jpg'); 
+    background-size: cover; /* Ensure the image covers the entire card */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
 .card.matched {
     background-color: #28a745; /* Change color for matched cards */
+    background-image: none; /* Remove the background image for matched cards, if desired */
 }
 
 #instructions {
@@ -54,8 +60,6 @@ body {
     margin: 20px 0; /* Add some space around it */
 }
 
-
- 
 .🤚 {
     --skin-color: #E4C560;
     --tap-speed: 0.6s;
@@ -206,4 +210,26 @@ body {
     40% {
         transform: rotate(50deg) scale(1);
     }
+}
+
+#reset-button {
+    background-color: #101e8b; /* Bright color for attention */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Padding for size */
+    font-size: 1.2em; /* Increase font size */
+    font-family: Arial, sans-serif; /* Consistent font with the rest */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add subtle shadow */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+#reset-button:hover {
+    background-color: #e04e2a; /* Darker shade on hover */
+    transform: scale(1.05); /* Slight scaling effect */
+}
+
+#reset-button:active {
+    transform: scale(0.95); /* Slight shrink on click */
 }
