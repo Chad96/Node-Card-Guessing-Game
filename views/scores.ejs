@@ -16,12 +16,18 @@
             </tr>
         </thead>
         <tbody>
-            <% scores.forEach(score => { %>
+            <% if (Array.isArray(scores) && scores.length > 0) { %>
+                <% scores.forEach(score => { %>
+                    <tr>
+                        <td><%= score.username %></td>
+                        <td><%= score.time %></td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
                 <tr>
-                    <td><%= score.username %></td>
-                    <td><%= score.time %></td>
+                    <td colspan="2">No scores available.</td>
                 </tr>
-            <% }) %>
+            <% } %>
         </tbody>
     </table>
     <a href="/">Back to Game</a>

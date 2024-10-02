@@ -22,9 +22,13 @@ app.get('/', (req, res) => {
 // Route: Scores page
 app.get('/scores', (req, res) => {
     fs.readFile(path.join(__dirname, 'data', 'scores.json'), 'utf8', (err, data) => {
-        if (err) throw err;
-        const scores = JSON.parse(data);
-        res.render('scores', { scores });
+        if (err) {
+            console.error('Error reading scores.json:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        
+        const scoresData = JSON.parse(data);
+        res.render('scores', { scores: scoresData.scores }); // Ensure you're passing the correct property
     });
 });
 
@@ -32,13 +36,20 @@ app.get('/scores', (req, res) => {
 app.post('/scores', (req, res) => {
     const { username, time } = req.body;
     const newScore = { username, time };
-    
+
     fs.readFile(path.join(__dirname, 'data', 'scores.json'), 'utf8', (err, data) => {
-        if (err) throw err;
-        const scores = JSON.parse(data);
-        scores.push(newScore);
-        fs.writeFile(path.join(__dirname, 'data', 'scores.json'), JSON.stringify(scores), 'utf8', (err) => {
-            if (err) throw err;
+        if (err) {
+            console.error('Error reading scores.json:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        const scoresData = JSON.parse(data);
+        scoresData.scores.push(newScore); // Update to push to the correct property
+        fs.writeFile(path.join(__dirname, 'data', 'scores.json'), JSON.stringify(scoresData), 'utf8', (err) => {
+            if (err) {
+                console.error('Error writing to scores.json:', err);
+                return res.status(500).send('Internal Server Error');
+            }
             res.redirect('/scores');
         });
     });
