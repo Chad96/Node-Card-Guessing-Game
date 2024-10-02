@@ -8,6 +8,7 @@ let startTime, timerInterval;
 window.onload = () => {
     startGame();
     document.getElementById('reset-button').addEventListener('click', resetGame);
+    document.querySelector('form').addEventListener('submit', submitScore);
 };
 
 function startGame() {
@@ -90,7 +91,7 @@ function updateTimer() {
 function endGame() {
     clearInterval(timerInterval);
     document.getElementById('popup').style.display = 'block';
-    document.getElementById('time').value = document.getElementById('timer').innerText.split(' ')[1];
+    document.getElementById('time').value = document.getElementById('timer').innerText.split(' ')[1]; // Set the time in the hidden input
 }
 
 function resetGame() {
@@ -100,6 +101,39 @@ function resetGame() {
     document.getElementById('popup').style.display = 'none';
 }
 
+// Form submission
+function submitScore(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const time = document.getElementById('time').value;
+
+    // Create a score object
+    const scoreData = {
+        username: username,
+        time: time
+    };
+
+    // Send POST request to JSON Server
+    fetch('http://localhost:5000/scores', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(scoreData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Score submitted successfully:', data);
+        // Optionally, you can redirect or update the UI after submission
+        window.location.href = '/scores'; // Redirect to scores page
+    })
+    .catch(error => {
+        console.error('Error submitting score:', error);
+    });
+}
+
+// Shuffle cards array
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
